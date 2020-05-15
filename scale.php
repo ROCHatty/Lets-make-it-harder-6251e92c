@@ -7,42 +7,32 @@ foreach (explode(",", trim($argv[3])) as $num)
     $num = intval($num);
     array_push($nums, $num);
 }
-if ($num1 < $num2)
-{
+if ($num1 < $num2) {
     $small = $num1;
     $big = $num2;
-}
-elseif ($num1 > $num2)
-{
+} elseif ($num1 > $num2) {
     $small = $num2;
     $big = $num1;
-}
-else
-{
+} else {
     die("Al in balans");
 }
 
-function createPossibilities($nums)
-{
+function createPossibilities($nums) {
     $possibilities = array();
-    foreach ($nums as $num)
-    {
+    foreach ($nums as $num) {
         array_push($possibilities, array(
             "num" => $num,
             "text" => $num
         ));
-        for ($i = 0;$i < count($nums);$i++)
-        {
+        for ($i = 0;$i < count($nums);$i++) {
             $count = 1;
-            while ($i + $count < count($nums))
-            {
+            while ($i + $count < count($nums)) {
                 array_push($possibilities, array(
                     "num" => $num + $nums[$i + $count],
                     "text" => $num . " and " . $nums[$i + $count]
                 ));
                 $c = 1;
-                while ($i + $c < count($nums))
-                {
+                while ($i + $c < count($nums)) {
                     array_push($possibilities, array(
                         "num" => $num + $nums[$i + $count] + $nums[$i + $c],
                         "text" => $num . ", " . $nums[$i + $count] . " and " . $nums[$i + $c]
@@ -56,28 +46,19 @@ function createPossibilities($nums)
     return $possibilities;
 }
 
-function getit($small, $big, $nums, $i = null)
-{
-    if ($i == null)
-    {
+function getit($small, $big, $nums, $i = null) {
+    if ($i == null) {
         $i = 0;
-    }
-    else
-    {
-        if ($i >= count($nums))
-        {
+    } else {
+        if ($i >= count($nums)) {
             die("Niet in balans");
-        }
-        else
-        {
+        } else {
             $i++;
         }
     }
     $possibilities = createPossibilities($nums);
-    foreach ($possibilities as $p)
-    {
-        if ($small + $p['num'] == $big)
-        {
+    foreach ($possibilities as $p) {
+        if ($small + $p['num'] == $big) {
             die("Add " . $p['text'] . " to the small number");
         }
     }
