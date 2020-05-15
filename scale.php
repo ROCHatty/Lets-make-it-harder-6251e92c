@@ -2,8 +2,7 @@
 $num1 = intval($argv[1]);
 $num2 = intval($argv[2]);
 $nums = array();
-foreach (explode(",", trim($argv[3])) as $num)
-{
+foreach (explode(",", trim($argv[3])) as $num) {
     $num = intval($num);
     array_push($nums, $num);
 }
@@ -17,14 +16,15 @@ if ($num1 < $num2) {
     die("Al in balans");
 }
 
-function createPossibilities($nums) {
+function createPossibilities($nums)
+{
     $possibilities = array();
     foreach ($nums as $num) {
         array_push($possibilities, array(
             "num" => $num,
             "text" => $num
         ));
-        for ($i = 0;$i < count($nums);$i++) {
+        for ($i = 0; $i < count($nums); $i++) {
             $count = 1;
             while ($i + $count < count($nums)) {
                 array_push($possibilities, array(
@@ -46,7 +46,8 @@ function createPossibilities($nums) {
     return $possibilities;
 }
 
-function getit($small, $big, $nums, $i = null) {
+function getit($small, $big, $nums, $i = null)
+{
     if ($i == null) {
         $i = 0;
     } else {
